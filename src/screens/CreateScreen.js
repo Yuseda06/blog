@@ -1,19 +1,20 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React, {useContext} from 'react'
-import { Context } from '../context/BlogContext'
+import { StyleSheet } from "react-native";
+import React, { useContext } from "react";
+import { Context } from "../context/BlogContext";
+import BlogPostForm from "../components/BlogPostForm";
 
-const CreateScreen = ({navigation}) => {
-const {state } = useContext(Context);
+const CreateScreen = ({ navigation }) => {
+  const { state } = useContext(Context);
+  const blogPost = state.find(
+    (blogPost) => blogPost.id === navigation.getParam("id")
+  ); 
+  const { addBlogPost } = useContext(Context);
 
-const blogPost = state.find((blogPost) => blogPost.id === navigation.getParam('id'))
+  return <BlogPostForm/>
 
-  return (
-    <View>
-      <Text>create</Text>
-    </View>
-  )
-}
+};
+const styles = StyleSheet.create({
 
-export default CreateScreen
+});
 
-const styles = StyleSheet.create({})
+export default CreateScreen;
